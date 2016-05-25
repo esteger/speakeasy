@@ -1,0 +1,36 @@
+<section id="header" ng-class="{full: !speakeasy.isLoggedIn, offset: speakeasy.activeControlPanel}">
+	<div class="md-toolbar-tools">
+		
+		<h2>
+			<span>Speakeasy <span class="version">{{speakeasy.version}}</span></span>
+		</h2>
+		
+		<span class="flex"></span>
+		
+		<div class="navbar-right">
+			
+			<md-button 
+				class="btn-nav" 
+				ng-hide="speakeasy.isLoggedIn || $state.includes('register')" 
+				ng-click="$state.go('register')">
+				Join
+			</md-button>
+			
+			<md-button 
+				class="btn-nav" 
+				ng-hide="speakeasy.isLoggedIn || $state.includes('login')" 
+				ng-click="$state.go('login')">
+				Login
+			</md-button>
+			
+			<md-button 
+				class="btn-nav" 
+				ng-hide="!speakeasy.isLoggedIn" 
+				ng-click="speakeasy.logout()">
+				Logout
+			</md-button>
+		
+		</div>
+
+	</div>
+</section>

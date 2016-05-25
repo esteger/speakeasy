@@ -1,0 +1,86 @@
+<md-content layout="column" flex="noshrink">
+
+	<div ng-if="postForm.quotePreview" class="quote-container">
+		<div class="text-content">
+			<md-content class="quote-header" layout="row" flex>
+				<span class="username">{{postForm.quotePreview.author}}</span>
+				<span flex></span>
+			</md-content>
+			<md-content class="quote-content" layout="row" flex="nogrow">
+				<div ng-if="!!postForm.quotePreview.imgur" class="img-container" flex="none">
+					<img ng-src="{{postForm.quotePreview.imgur.link}}">
+				</div>
+				<div ng-if="!!postForm.quotePreview.text" class="text-container" flex="nogrow">
+					<p>{{postForm.quotePreview.text}}</p>
+				</div>
+			</md-content>
+		</div>
+		<div class="cancel-quote" ng-click="postForm.cancelQuote()">&times;</div>
+	</div>
+
+ 	<md-content layout="row" flex="noshrink">
+		<md-input-container layout="column" layout-align="end">
+			
+			<md-button
+				class="btn-orange"
+				aria-label="Image"
+				ngf-select
+				ng-model="file" 
+				name="file"
+				ngf-accept="'image/*'" 
+				ngf-change="postForm.uploadToImgur($files)">
+
+				<ez-icon
+					ng-if="!postForm.imgPreview && !postForm.imgLoading" 
+					icon="camera" 
+					style="fill:#fff;" 
+					size="30">
+				</ez-icon>
+
+				<img 
+					class="img-loader" 
+					ng-if="postForm.imgLoading" 
+					src="assets/loading_img.gif"
+				/>
+				<img 
+					class="img-preview" 
+					ng-if="!!postForm.imgPreview" 
+					ng-src="{{postForm.imgPreview}}"
+				/>
+			</md-button>
+			
+			<div 
+				class="cancel-image" 
+				ng-if="!!postForm.imgPreview" 
+				ng-click="postForm.cancelImage()">
+				&times;
+			</div>
+
+		</md-input-container>
+
+		<md-input-container 
+			class="post-text-container" 
+			md-no-float 
+			flex="auto" 
+			layout="column" 
+			layout-align="center center">
+			<textarea 
+				class="post-text" 
+				ng-model="postForm.newPost.text"
+				ng-model-options="{updateOn: 'blur'}"
+				aria-label="New Post">
+			</textarea>
+		</md-input-container>
+
+		<md-input-container layout="column" layout-align="end">
+			<md-button 
+				class="btn-submit" 
+				ng-disabled="postForm.imgLoading"
+				ng-click="postForm.submitPost(thread._id, thread.comments.length)" 
+				aria-label="Post">
+				<ez-icon icon="chat" style="fill:#fff;" size="35"></ez-icon>
+			</md-button>
+		</md-input-container>
+	</md-content>
+
+</md-content>

@@ -1,0 +1,63 @@
+<div 
+	id="login-container" 
+	layout="column" 
+	layout-align="end center">	
+	
+	<md-content ng-if="!speakeasy.isLoggedIn">
+		<span class="error" ng-if="!!login.error">{{login.error}}</span>
+		<form 
+			layout="row" 
+			layout-xs="column" 
+			ng-submit="login.login()">
+			
+			<md-content layout="column" layout-padding>
+				<md-input-container 
+					layout="row" 
+					layout-align="start center">
+					<label>Email</label>
+					<input 
+						type="email" 
+						ng-model="login.credentials.email" 
+						required
+					/>
+				</md-input-container>
+				
+				<md-input-container 
+					layout="row" 
+					layout-align="start center">
+					<label>Password</label>
+					<input 
+						type="password" 
+						ng-model="login.credentials.password" 
+						required
+					/>
+				</md-input-container>
+			</md-content>
+
+			<md-input-container 
+				class="submit-container" 
+				layout="column" 
+				layout-xs="row" 
+				layout-align="center center" 
+				flex>
+				<md-button 
+					type="submit" 
+					class="btn-submit" 
+					flex>
+					Login
+				</md-button>
+			</md-input-container>
+
+		</form>
+	</md-content>
+
+	<md-input-container layout="row" layout-align="center center">
+		<md-button 
+			hide
+			class="btn-guest"
+			ng-click="login.loginAsGuest()">
+			Guest
+		</md-button>
+	</md-input-container>
+
+</div>

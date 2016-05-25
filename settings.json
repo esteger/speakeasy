@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": { 
+     "env": { 
+       "MONGO_URL": "mongodb://speakeasydev:spokeneasily@ds015720.mlab.com:15720/speakeasydb" 
+     } 
+   }
+}

@@ -1,0 +1,52 @@
+board#speakeasy {
+	dir-pagination-controls {
+		background-color: #fff;
+		border-radius: 4px;
+		opacity: 0.95;
+		margin-bottom: @thread-spacing;
+		ul.pagination {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			li {
+				list-style-type: none;
+				display: inline-block;
+				border-right: 1px solid @blue;
+				a {
+					display: inline-block;
+					text-decoration: none;
+					color: @grey;
+					font-size: 18px;
+					padding: 12px;
+					min-width: 25px;
+					text-align: center;
+					font-weight: bold;
+					&:visited {
+						color: @grey;
+					}
+				}
+				&.active {
+					background-color: @blue;
+					a {
+						color: #fff;
+					}
+				}
+				&:not(.active):not(.disabled):hover a {
+					color: @blue;
+				}
+				&:last-child {
+					border-right: none;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: @sm) {
+	board#speakeasy {
+		dir-pagination-controls {
+			margin-bottom: @thread-spacing + @controls-height;
+		}
+	}
+}
+

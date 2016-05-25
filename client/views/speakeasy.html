@@ -1,0 +1,9 @@
+<header></header>
+
+<section 
+	ui-view 
+	id="speakeasy-content" 
+	ng-class="{offset: !!speakeasy.activeControlPanel}">
+</section>
+
+<control-panel ng-if="speakeasy.isLoggedIn"></control-panel>

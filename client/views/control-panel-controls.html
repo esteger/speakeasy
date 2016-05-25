@@ -1,0 +1,28 @@
+<md-content>
+
+	<div class="logo" hide show-gt-sm>
+		<ez-icon
+			icon="logo" 
+			style="fill:#99ccff;" 
+			size="30">
+		</ez-icon>
+	</div>
+
+	<md-button 
+		ng-repeat="controlPanel in speakeasy.controlPanels"
+		class="{{'toggle-' + controlPanel.name}}"
+		aria-label="{{controlPanel.name}}"
+		ng-click="speakeasy.toggleControlPanel(controlPanel.name)">
+
+		<ez-icon
+			ng-if="!!controlPanel.icon"
+			icon="{{controlPanel.icon}}"
+			style="fill:#fff;"
+			viewbox="0 0 20 20"
+			size="25">
+		</ez-icon>
+
+		<div ng-if="controlPanel.name === 'userlist'">{{speakeasy.usersOnline}}</div>
+	</md-button> 
+
+</md-content>

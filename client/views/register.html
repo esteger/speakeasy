@@ -1,0 +1,93 @@
+<div 
+	id="register-container" 
+	layout="row" 
+	layout-align="center center">
+	
+	<md-content ng-if="!speakeasy.isLoggedIn">
+		<form 
+			name="registerForm" 
+			layout="column" 
+			ng-submit="register.register()">
+			
+			<md-content layout="column" layout-padding>
+				<span class="error" ng-if="!!register.error">{{register.error}}</span>
+				
+				<md-input-container layout="row" layout-align="start center">
+					<label>Email</label>
+					<input 
+						type="email" 
+						ng-model="register.user.email" 
+						required
+					/>
+				</md-input-container>
+				
+				<md-input-container layout="row" layout-align="start center">
+					<label>Username</label>
+					<input 
+						type="text" 
+						ng-model="register.user.profile.handle" 
+						required
+					/>
+				</md-input-container>
+				
+				<md-input-container 
+					layout="row" 
+					layout-align="start center" 
+					ng-class="{'md-input-invalid': register.retypePassword && register.user.password !== register.retypePassword }">
+					<label>Password</label>
+					<input 
+						type="password" 
+						ng-model="register.user.password" 
+						required
+					/>
+				</md-input-container>
+				
+				<md-input-container 
+					layout="row" 
+					layout-align="start center" 
+					ng-class="{'md-input-invalid': register.retypePassword && register.user.password !== register.retypePassword }">
+					<label>Retype Password</label>
+					<input 
+						type="password" 
+						ng-model="register.retypePassword" 
+						required
+					/>
+				</md-input-container>
+
+				<md-input-container
+					layout="row"
+					layout-align="start center">
+					<label>Access Code</label>
+					<input
+						type="text"
+						ng-model="register.accessCode"
+						required
+					/>
+				</md-input-container>
+
+			</md-content>
+			
+			<md-input-container 
+				class="submit-container" 
+				layout="row" 
+				layout-align="center center" 
+				flex>
+				<md-button 
+					type="submit" 
+					class="btn-submit" 
+					ng-disabled="register.user.password !== register.retypePassword" 
+					flex>
+					Join
+				</md-button>
+			</md-input-container>
+		
+		</form>
+	</md-content>
+</div>
+			
+			
+
+			
+			
+
+

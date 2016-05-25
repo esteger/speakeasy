@@ -1,0 +1,88 @@
+md-dialog {
+	opacity: 1!important;
+}
+
+md-input-container.md-input-invalid.md-input-focused label {
+	color: @pink!important;
+}
+md-input-container.md-input-invalid .md-input {
+	border-color: @pink!important;
+}
+md-input-container:not(.md-input-invalid).md-input-focused label {
+	color: @blue!important;
+}
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+	border-color: @blue!important;
+}
+
+.md-button {
+	min-width: 0;
+	transition: box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+				background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+				color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.md-button.btn-submit {
+	background: @light-blue;
+	color: @white;
+	&:hover, &.md-focused {
+		background: @blue!important;
+	}
+	&[disabled] {
+		color: @white!important;
+		opacity: 0.5;
+		font-style: italic;
+		&:hover, &.md-focused {
+			background: @light-blue!important;
+		}
+	}
+}
+.md-button.btn-orange {
+	background: @light-orange;
+	color: @white;
+	&:hover, &.md-focused {
+		background: @orange!important;
+	}
+}
+.md-button.btn-save,
+.md-button.btn-guest {
+	background: @green;
+	color: @white;
+	&:hover, &.md-focused {
+		background: darken(@green, 10%)!important;
+	}
+}
+.md-button.btn-cancel {
+	background: @pink;
+	color: @white;
+	&:hover, &.md-focused {
+		background: darken(@pink, 10%)!important;
+	}
+}
+.md-button.btn-nav {
+	color: @grey;
+	letter-spacing: 0.1em;
+	&:hover, &.md-focused {
+		color: @light-grey;
+	}
+}
+.md-button.md-fab {
+	border-radius: 4px;
+	width: auto;
+	height: auto;
+	line-height: normal;
+	padding: 1%;
+}
+.md-button.green-fab {
+	background: @green;
+	color: @white;
+	&:hover, &.md-focused {
+		background: @green!important;
+	}
+}
+.md-button.grey-fab {
+	background: @light-grey;
+	color: @white;
+	&:hover, &.md-focused {
+		background: @light-grey!important;
+	}
+}

@@ -1,0 +1,41 @@
+#header {
+	position: fixed;
+	left: @controls-width;
+	right: 0;
+	top: 0;
+	background-color: fade(#000, 75%);
+	z-index: 900;
+	border-bottom: 1px solid @light-blue;
+	transition: left 0.4s cubic-bezier(0.25, .8, .25, 1);
+	.md-toolbar-tools {
+		padding: 0 16px 0 0;
+		height: @header-height;
+		min-height: @header-height;
+		max-height: @header-height;
+	}
+	h2 {
+		color: @light-blue;
+		margin-left: 16px;
+		.version {
+			font-size: 10px;
+			color: @white;
+		}
+	}
+	&.offset {
+		left: @control-panel-width + @controls-width;
+	}
+	&.full {
+		left: 0;
+	}
+}
+
+@media only screen and (max-width: @sm) {
+	#header {
+		position: static;
+		.md-toolbar-tools {
+			.control-panel-header {
+				display: none;
+			}
+		}
+	}
+}

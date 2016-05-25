@@ -1,0 +1,24 @@
+#register-container {
+	position: absolute;
+	top: @header-height;
+	left: 0; right: 0; bottom: 0;
+	overflow: auto;
+	> md-content {
+		background: #fff;
+		border-radius: 4px;
+		opacity: 0.95;
+		.raised-1;
+	}
+	form {
+		background-color: #fff;
+		> md-content {
+			width: 300px;
+		}
+		.submit-container {
+			margin: 0;
+			.btn-submit {
+				padding: 12px 24px;
+			}
+		}
+	}
+}

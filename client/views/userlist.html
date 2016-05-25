@@ -1,0 +1,14 @@
+<md-content>
+	<ul layout="column" class="user-list">
+		<li 
+			class="user-item" 
+			ng-repeat="user in userlist.users | orderBy:'-status.online'" 
+			ng-class="{online: user.status.online, offline: !user.status.online}">
+
+			<span class="status">&#9679;</span>
+			<span class="handle">{{user.profile.handle}}</span>
+			<!-- <span>{{user.emails[0].address}}</span> -->
+			<!-- <div>{{user}}</div> -->
+		</li>
+	</ul>
+</md-content>

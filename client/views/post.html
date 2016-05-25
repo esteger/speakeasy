@@ -1,0 +1,61 @@
+<div class="post-container">
+
+	<md-content class="post-header" layout="row" flex>
+		<span class="username">{{post.getAuthor(content)}}</span>
+		<span flex></span>
+		<span class="date">{{post.getTimeAgo(content)}}</span>
+	</md-content>
+
+	<!-- Quoted content --> 
+	<md-content ng-if="!!content.quote" class="quote-container">
+		<div class="text-content">
+			<md-content class="quote-header" layout="row" flex>
+				<span class="username">{{post.getAuthor(content.quote)}}</span>
+				<span flex></span>
+			</md-content>
+			<md-content class="quote-content" layout="row" flex="nogrow">
+				<div ng-if="!!content.quote.imgur" class="img-container" flex="none">
+					<img ng-src="{{content.quote.imgur.link}}">
+				</div>
+				<div ng-if="!!content.quote.text" class="text-container" flex="nogrow">
+					<!-- <p>{{::post.getPostText(content.quote)}}</p> -->
+					<p>{{::content.quote.text}}</p>
+				</div>
+			</md-content>
+		</div>
+	</md-content> 
+
+	<!-- Embedded YouTube -->
+	<div ng-if="post.youTube" class="youtube-container" flex="grow">
+		<iframe ng-src="{{::post.embededYouTube}}" frameborder="0" allowfullscreen></iframe>
+	</div>
+
+	<!-- Post content -->
+	<md-content class="post-content" ng-class="post.imgExpand ? 'layout-column' : 'layout-row'">
+		<!-- Post image -->
+		<div 
+			ng-if="!!content.imgur" 
+			class="img-container" 
+			flex="none" 
+			ng-click="post.toggleImgExpand()" 
+			ng-class="{'expand': post.imgExpand }">
+			<img 
+				ng-if="!!content.imgur"
+				ng-src="{{content.imgur.link}}"
+			/>
+		</div>
+
+		<!-- Post text -->
+		<div 
+			ng-if="!!content.text" 
+			class="text-container" 
+			ng-class="{'expand': post.imgExpand}" 
+			flex="nogrow">
+			<p>{{::post.getPostText(content)}}</p>
+		</div>
+
+	</md-content>
+
+	<post-controls></post-controls>
+
+</div>

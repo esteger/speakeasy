@@ -1,0 +1,12 @@
+<md-content 
+	ng-hide="closeSticky"
+	class="sticky-container" 
+	layout="column" 
+	flex>
+	<p>{{sticky.text}}</p>
+	<div 
+		class="sticky-close"
+		ng-click="closeSticky=true">
+		&otimes;
+	</div>
+</md-content>

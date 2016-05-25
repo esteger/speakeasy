@@ -1,0 +1,24 @@
+<div class="post-controls" layout="row">
+
+	<div class="voting-controls">
+		<div class="likes">
+			<div class="amount">{{postControls.getVotes(content, 'U')}}</div>
+			<div class="arrow" ng-click="postControls.submitVote(content, 'U')"></div>
+		</div>
+		<div class="dislikes">
+			<div class="arrow" ng-click="postControls.submitVote(content, 'D')"></div>
+			<div class="amount">{{postControls.getVotes(content, 'D')}}</div>
+		</div>
+	</div>
+
+	<!--
+	<star-rating></star-rating>
+	-->
+
+	<md-button ng-click="postControls.quote(content)">Quote</md-button>
+	
+	<span flex></span>
+	
+	<md-button ng-if="!!content.comments && postControls.foldedComments > 0" ng-click="postControls.collapseComments(content)">{{postControls.btnCollapse}}</md-button>
+	
+</div>

@@ -1,0 +1,125 @@
+control-panel {
+	md-backdrop {
+		display: none;
+		position: fixed;
+	}
+	md-sidenav {
+		position: fixed;
+		// background-color: fade(@white, 95%);
+		background-color: transparent;
+		width: @control-panel-width + @controls-width;
+		z-index: 1000;
+		section.control-panel-content-container {
+			width: @control-panel-width;
+			height: 100%;
+			background-color: fade(@white, 95%);
+			md-content {
+				background: transparent;
+			}
+		}
+		section.control-panel-controls-container {
+			control-panel-controls {
+				right: 0;
+				left: auto;
+			}
+		}
+	}
+}
+
+control-panel-controls {
+	position: fixed;
+	top: 0;
+	bottom: 0; 
+	left: 0;
+	opacity: 0.9;
+	width: @controls-width;
+	md-content {
+		background-color: @light-blue;
+		height: 100%;
+		width: 100%;
+		.logo,
+		.md-button {
+			float: left;
+			width: @controls-width;
+			height: @controls-width;
+			margin: 0;
+			padding: 0;
+			border-radius: 0;
+			color: @white;
+			line-height: normal;
+			ez-icon {
+				opacity: 0.75;
+			}
+		}
+		.logo {
+			background-color: @blue;
+			text-align: center;
+			ez-icon svg {
+				margin-top: 10px;
+				margin-left: 2px;
+			}
+		}
+		button.toggle-settings {
+			background-color: @grey;
+			&:hover, &.md-focused {
+				background: @grey!important;
+			}
+		}
+		button.toggle-userlist {
+			background-color: @green;
+			&:hover, &.md-focused {
+				background: @green!important;
+			}
+		}
+		.toggle-settings svg,
+		.toggle-userlist svg {
+			margin-bottom: -3px;
+		}
+	}
+}
+
+@media only screen and (max-width: @sm) {
+	control-panel {
+		md-backdrop {
+			display: block;
+		}
+		md-sidenav {
+			width: 100%;
+			overflow: visible;
+			section.control-panel-content-container {
+				width: auto;
+			}
+			.btn-close {
+				position: absolute;
+				top: 0;
+				left: -48px;
+				height: 38px;
+				width: 38px;
+				line-height: 38px;
+				color: @white;
+				font-size: 72px;
+				outline: none;
+				cursor: pointer;
+			}
+		}
+	}
+
+	control-panel-controls {
+		top: auto;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: @controls-height;
+		width: auto;
+		md-content {
+			.md-button {
+				float: right;
+				width: @controls-height;
+				height: @controls-height;
+			}
+		}
+		&.offset {
+			left: 0;
+		}
+	}
+}

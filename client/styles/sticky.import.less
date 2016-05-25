@@ -1,0 +1,44 @@
+sticky {
+	width: 100%;
+	md-content {
+		background: transparent;
+	}
+}
+
+.sticky-container {
+	position: relative;
+	background: fade(@pink, 95);
+	border-radius: 4px;
+	padding: 8px;
+	color: @white;
+	text-align: center;
+	margin-bottom: @thread-spacing;
+	.raised-1;
+	p {
+		margin: 0 2.1em;
+	}
+	a {
+		color: inherit;
+		font-weight: bold;
+		text-decoration: none;
+		&:hover {
+			color: @blue;
+		}
+	}
+	.sticky-close {
+		position: absolute;
+		top: 0;
+		right: 8px;
+		bottom: 0;
+		line-height: 100%;
+		cursor: pointer;
+		font-size: 2em;
+		outline: none;
+	}
+}
+
+@media only screen and (max-width: @sm) {
+	.sticky-container {
+		border-radius: 0;
+	}
+}

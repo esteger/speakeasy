@@ -1,0 +1,5 @@
+<md-content class="thread-container" layout="column" flex>
+	<post content="thread"></post>
+	<comment ng-repeat="comment in thread.comments" ng-if="$index >= threadCtrl.foldedComments"></comment>
+	<post-form placeholder="New Comment"></post-form>
+</md-content>

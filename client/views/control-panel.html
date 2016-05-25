@@ -1,0 +1,31 @@
+<control-panel-controls ng-hide="speakeasy.activeControlPanel"></control-panel-controls>
+
+<md-backdrop 
+	class="md-sidenav-backdrop md-opaque md-default-theme md-sidenav-backdrop-custom disabled" 
+	ng-if="!!speakeasy.activeControlPanel"
+	ng-click="speakeasy.toggleControlPanel(speakeasy.activeControlPanel)">
+</md-backdrop>
+
+<md-sidenav 
+	md-component-id="controlPanel"
+	ng-class="speakeasy.media('gt-sm') ? 'md-sidenav-left' : 'md-sidenav-right'" 
+	md-swipe-left="speakeasy.toggleControlPanel(speakeasy.activeControlPanel)">
+
+	<section class="control-panel-content-container">
+		<settings ng-if="speakeasy.activeControlPanel === 'settings'"></settings>
+		<userlist ng-if="speakeasy.activeControlPanel === 'userlist'"></userlist>
+	</section>
+
+	<section class="control-panel-controls-container">
+		<control-panel-controls hide show-gt-sm></control-panel-controls>
+	</section>
+
+	<div 
+		hide-gt-sm
+		ng-hide="speakeasy.hideBtnClose"
+		class="btn-close" 
+		ng-click="speakeasy.toggleControlPanel(speakeasy.activeControlPanel)">
+		&times;
+	</div>
+
+</md-sidenav>

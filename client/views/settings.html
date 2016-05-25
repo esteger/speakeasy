@@ -1,0 +1,37 @@
+<md-content layout-padding>
+	<form layout="column" id="settings">
+
+		<md-input-container layout="row">
+			<label>Username</label>
+			<input type="text" ng-model="settings.currentUser.profile.handle" flex/>
+		</md-input-container>
+
+		<!-- CHANGE PASSWORD
+		<md-input-container layout="row" ng-class="{'md-input-invalid': settings.retypePassword && settings.password !== settings.retypePassword }">
+			<label>Password</label>
+			<input type="password" ng-model="settings.password" flex/>
+		</md-input-container>
+		<md-input-container layout="row" ng-class="{'md-input-invalid': settings.retypePassword && settings.password !== settings.retypePassword }">
+			<label>Retype Password</label>
+			<input type="password" ng-model="settings.retypePassword" flex/>
+		</md-input-container>
+		END CHANGE PASSWORD -->
+
+		<md-input-container layout="row">
+			<md-button 
+				ng-click="settings.cancel()" 
+				class="btn-cancel" 
+				flex="50">
+				Cancel
+			</md-button>
+			
+			<md-button 
+				ng-click="settings.save()" 
+				class="btn-save" 
+				flex="50">
+				Save
+			</md-button>
+		</md-input-container>
+
+	</form>
+</md-content>

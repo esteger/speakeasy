@@ -1,0 +1,24 @@
+thread {
+	margin-bottom: @thread-spacing;
+	width: 100%;
+	md-content {
+		background: transparent;
+	}
+}
+
+.thread-container {
+	background: fade(@white, 95);
+	border-radius: 4px;
+	padding: 8px;
+	.raised-1;
+	> post {
+		margin-bottom: 8px;
+	}
+}
+
+@media only screen and (max-width: @sm) {
+	.thread-container {
+		border-radius: 0;
+	}
+}
+
