@@ -46,7 +46,7 @@ angular.module('speakeasy').directive('speakeasy', function() {
 
 			reactiveContext.helpers({
 				currentTime: () => {
-					return TimeSync.serverTime();
+					return TimeSync.serverTime(null, 60000);
 				},
 				isLoggedIn: () => {
 					return Meteor.userId() !== null;
