@@ -6,7 +6,7 @@ angular.module('speakeasy').directive('speakeasy', function() {
 		controller: function($scope, $reactive, $state, $mdSidenav, $mdMedia) {
 			let reactiveContext = $reactive(this).attach($scope);
 
-			this.version = '1.6';
+			this.version = '2.0';
 
 			this.media = $mdMedia;
 
@@ -19,11 +19,35 @@ angular.module('speakeasy').directive('speakeasy', function() {
 			this.activeControlPanel = null;
 			this.hideBtnClose = false;
 
+			Tracker.autorun(function() {
+				if (!!Meteor.userId()) {
+					try {
+						UserStatus.startMonitor({
+							threshold: 30000,
+							interval: 1000,
+							idleOnBlur: true
+						});
+						console.log('Idle monitor started.')
+					} catch(e) {
+						console.warn(e);
+					}
+				} else {
+					try {
+						UserStatus.stopMonitor();
+					} catch(e) {
+						console.warn(e);
+					}
+				}
+			});
+
 			reactiveContext.subscribe('votes');
 			reactiveContext.subscribe('users');
 			reactiveContext.subscribe('images');
 
 			reactiveContext.helpers({
+				currentTime: () => {
+					return TimeSync.serverTime();
+				},
 				isLoggedIn: () => {
 					return Meteor.userId() !== null;
 				},

@@ -4,7 +4,7 @@ angular.module('speakeasy').directive('register', function() {
 		templateUrl: 'client/views/register.html',
 		controllerAs: 'register',
 		controller: function($state) {
-			var accessCode = 'this guy fucks';
+			var accessCode = 'ryuko matoi';
 
 			this.user = {
 				email: '',

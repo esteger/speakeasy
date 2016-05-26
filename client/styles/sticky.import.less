@@ -7,7 +7,8 @@ sticky {
 
 .sticky-container {
 	position: relative;
-	background: fade(@pink, 95);
+	background: fade(@pink, 95%);
+	border: 1px solid fade(@white, 95%);
 	border-radius: 4px;
 	padding: 8px;
 	color: @white;
@@ -16,6 +17,7 @@ sticky {
 	.raised-1;
 	p {
 		margin: 0 2.1em;
+		white-space: pre-line;
 	}
 	a {
 		color: inherit;
@@ -40,5 +42,7 @@ sticky {
 @media only screen and (max-width: @sm) {
 	.sticky-container {
 		border-radius: 0;
+		border-left-color: transparent;
+		border-right-color: transparent;
 	}
 }

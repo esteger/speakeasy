@@ -4,21 +4,31 @@ userlist {
 		padding: 0;
 		.user-item {
 			padding: 8px;
+			font-size: 12px;
 			border-bottom: 1px solid fade(@white, 100%);
+			color: @grey;
 			.handle {
-
+				font-size: 16px;
 			}
 			.status {
-				font-size: 24px;
+				font-style: italic;
 			}
 			&.online {
-				.status {
-					color: @green;
+				.handle {
+					color: darken(@green, 5%);
+					font-weight: bold;
+				}
+			}
+			&.idle {
+				.handle {
+					color: darken(@green, 5%);
+					font-style: italic;
 				}
 			}
 			&.offline {
-				.status {
+				.handle {
 					color: @grey;
+					font-style: italic;
 				}
 			}
 		}

@@ -6,7 +6,7 @@ angular.module('speakeasy').directive('post', function() {
 		scope: {
 			content: '='
 		},
-		controller: function($scope, $filter, $sce, ThreadService) {
+		controller: function($scope, $filter, $sce, TimeService) {
 			var speakeasy = $scope.$root.speakeasy;
 			
 			this.imgExpand = false;
@@ -29,12 +29,11 @@ angular.module('speakeasy').directive('post', function() {
 			};
 
 			this.getTimeAgo = (post) => {
-				var date = post.date,
-					timePost = date.getTime(),
-					timeNow = Date.now(),
-					timeAgo = timeNow - timePost;
+				let timeAgo = speakeasy.currentTime - post.date.getTime();
+				let initUnit = 'just now';
+				let postString = 'ago';
 
-				return ThreadService.formatTimeAgo(timeAgo);
+				return TimeService.formatTime(timeAgo, initUnit, postString);
 			};
 
 			this.getPostImg = (post, store = 'original') => {

@@ -13,7 +13,7 @@ angular.module('speakeasy').directive('board', function() {
 			};
 
 			this.stickies = [
-				// {text: 'MOM GET THE CAMERA!!'}
+				{ text: 'Version 2 will focus on revamping the userlist and user features.\n"Time ago" is being calculated more reactively, let\'s see if that doesn\'t bog down the server.' }
 			];
 
 			reactiveContext.subscribe('threads', () => [{
