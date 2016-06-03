@@ -10,7 +10,7 @@ Images are stored and fetched using version 3 of the Imgur API. As such, Speakea
 
 1. `cd speakeasy`
 2. `npm install`
-3. `meteor --settings settings.json`
+3. `meteor`
 
 To register a user, you will need to first set `var accessCode` in client/scripts/components/register.component.js
 
