@@ -3,7 +3,9 @@ angular.module('speakeasy').directive('login', function() {
 		restrict: 'E',
 		templateUrl: 'client/views/login.html',
 		controllerAs: 'login',
-		controller: function($state) {
+		controller: function($scope, $state) {
+			var speakeasy = $scope.$parent.speakeasy;
+
 			this.error = '';
 			
 			this.credentials = {
@@ -17,6 +19,7 @@ angular.module('speakeasy').directive('login', function() {
 						this.error = error.reason;
 						console.error(error);
 					} else {
+						speakeasy.resetControlPanel();
 						$state.go('board');
 					}
 				});

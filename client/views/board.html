@@ -13,3 +13,14 @@
 	max-size="speakeasy.media('gt-sm') ? '9' : '5'"
 	on-page-change="board.pageChanged(newPageNumber)">
 </dir-pagination-controls>
+
+<div ng-if="!speakeasy.isLoggedIn" class="timeout-overlay">
+	<div class="center-screen">
+		<div class="cell">
+			<md-content class="dialogue">
+				<p>your session has timed out.</p>
+				<p>please <a href="/login">login</a> to continue.</p>
+			</md-content>
+		</div>
+	</div>
+</div>

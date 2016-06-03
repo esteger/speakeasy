@@ -13,7 +13,7 @@ angular.module('speakeasy').directive('board', function() {
 			};
 
 			this.stickies = [
-				{ text: 'Version 2 will focus on revamping the userlist and user features.\n"Time ago" is being calculated more reactively, let\'s see if that doesn\'t bog down the server.' }
+				// { text: 'You will be logged out after 30 minutes of inactivity' }
 			];
 
 			reactiveContext.subscribe('threads', () => [{

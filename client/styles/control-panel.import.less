@@ -5,7 +5,6 @@ control-panel {
 	}
 	md-sidenav {
 		position: fixed;
-		// background-color: fade(@white, 95%);
 		background-color: transparent;
 		width: @control-panel-width + @controls-width;
 		z-index: 1000;
@@ -13,6 +12,7 @@ control-panel {
 			width: @control-panel-width;
 			height: 100%;
 			background-color: fade(@white, 95%);
+			overflow: auto;
 			md-content {
 				background: transparent;
 			}

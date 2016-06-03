@@ -116,3 +116,4 @@ underscore@1.0.8
 url@1.0.9
 webapp@1.2.8
 webapp-hashing@1.0.9
+zuuk:stale-session@1.0.8

@@ -7,11 +7,42 @@ userlist {
 			font-size: 12px;
 			border-bottom: 1px solid fade(@white, 100%);
 			color: @grey;
+			// cursor: pointer;
+			outline: none;
 			.handle {
 				font-size: 16px;
 			}
 			.status {
 				font-style: italic;
+			}
+			.rating {
+				font-style: italic;
+				padding: 4px 0 2px;
+				.arrow {
+					float: left;
+					width: 0;
+					height: 0;
+					border-style: solid;
+				}
+				.amount {
+					float: left;
+					line-height: 10px;
+					margin-right: 2px;
+				}
+				.likes {
+					display: inline-block;
+					.arrow {
+						border-width: 0 6px 10.4px 6px;
+	    				border-color: transparent transparent @light-grey transparent;
+					}
+				}
+				.dislikes {
+					display: inline-block;
+					.arrow {
+						border-width: 10.4px 6px 0 6px;
+						border-color: @light-grey transparent transparent transparent;
+					}
+				}
 			}
 			&.online {
 				.handle {
@@ -30,6 +61,9 @@ userlist {
 					color: @grey;
 					font-style: italic;
 				}
+			}
+			&:hover {
+				background-color: fade(@light-blue, 15%);
 			}
 		}
 	}

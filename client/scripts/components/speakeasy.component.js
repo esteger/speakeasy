@@ -6,7 +6,7 @@ angular.module('speakeasy').directive('speakeasy', function() {
 		controller: function($scope, $reactive, $state, $mdSidenav, $mdMedia) {
 			let reactiveContext = $reactive(this).attach($scope);
 
-			this.version = '2.0';
+			this.version = '2.3';
 
 			this.media = $mdMedia;
 
@@ -23,8 +23,8 @@ angular.module('speakeasy').directive('speakeasy', function() {
 				if (!!Meteor.userId()) {
 					try {
 						UserStatus.startMonitor({
-							threshold: 30000,
-							interval: 1000,
+							threshold: 300000, // 5 mins
+							interval: 30000, // 30 secs
 							idleOnBlur: true
 						});
 						console.log('Idle monitor started.')
@@ -45,11 +45,12 @@ angular.module('speakeasy').directive('speakeasy', function() {
 			reactiveContext.subscribe('images');
 
 			reactiveContext.helpers({
-				currentTime: () => {
-					return TimeSync.serverTime(null, 60000);
-				},
 				isLoggedIn: () => {
-					return Meteor.userId() !== null;
+					return !!Meteor.userId();
+				},
+				currentTime: () => {
+					// Todo: Pass in client time?
+					return TimeSync.serverTime(null, 60000);
 				},
 				currentUser: () => {
 					return Meteor.user();
@@ -60,19 +61,10 @@ angular.module('speakeasy').directive('speakeasy', function() {
 				usersOnline: () => {
 					return Counts.get('usersOnline');
 				},
-				images: () => {
-					return Images.find({});
-				},
 				votes: () => {
 					return Votes.find({});
 				}
 			});
-
-			this.logout = () => {
-				Accounts.logout(() => {
-					$state.go('login');
-				});
-			};
 
 			this.toggleControlPanel = (controlPanel) => {
 				this.hideBtnClose = false;
@@ -94,6 +86,20 @@ angular.module('speakeasy').directive('speakeasy', function() {
 				}
 			};
 
+			this.resetControlPanel = () => {
+				if (this.controlPanelIsOpen) {
+					this.controlPanelIsOpen = false;
+					this.activeControlPanel = null;
+					this.hideBtnClose = false;
+				}
+			};
+
+			this.logout = () => {
+				this.resetControlPanel();
+				Accounts.logout(() => {
+					$state.go('login');
+				});
+			};
 		}
 	}
 });

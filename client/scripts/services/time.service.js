@@ -18,27 +18,27 @@ angular.module('speakeasy').service('TimeService', function() {
 		initUnit = initUnit || 'less than 1 minute';
 
 		var timeStr = initUnit,
-			unit = getUnits(milliseconds),
+			units = getUnits(milliseconds),
 			post = !!postString ? ' ' + postString : '';
 
-		if (unit.years >= 1) {
-			unit.months -= (unit.years * 12);
-			timeStr = unit.years + ' year' + pluralize(unit.years);
-			timeStr += unit.months > 0 ? ' ' + unit.months + ' month' + pluralize(unit.months) + post : post;
-		} else if (unit.months >= 1) {
-			days -= (unit.months * 30);
-			timeStr = unit.months + ' month' + pluralize(unit.months);
-			timeStr += days > 0 ? ' ' + unit.days + ' day' + pluralize(unit.days) + post : post;
-		} else if (unit.days >= 1) {
-			unit.hours -= (unit.days * 24);
-			timeStr = unit.days + ' day' + pluralize(days);
-			timeStr += unit.hours > 0 ? ' ' + unit.hours + ' hour' + pluralize(unit.hours) + post : post;
-		} else if (unit.hours >= 1) {
-			unit.minutes -= (unit.hours * 60);
-			timeStr = unit.hours + ' hour' + pluralize(unit.hours);
-			timeStr += unit.minutes > 0 ? ' ' + unit.minutes + ' minute' + pluralize(unit.minutes) + post : post;
-		} else if (unit.minutes >= 1) {
-			timeStr = unit.minutes + ' minute' + pluralize(unit.minutes) + post;
+		if (units.years >= 1) {
+			units.months -= (units.years * 12);
+			timeStr = units.years + ' year' + pluralize(units.years);
+			timeStr += units.months > 0 ? ' ' + units.months + ' month' + pluralize(units.months) + post : post;
+		} else if (units.months >= 1) {
+			units.days -= (units.months * 30);
+			timeStr = units.months + ' month' + pluralize(units.months);
+			timeStr += units.days > 0 ? ' ' + units.days + ' day' + pluralize(units.days) + post : post;
+		} else if (units.days >= 1) {
+			units.hours -= (units.days * 24);
+			timeStr = units.days + ' day' + pluralize(units.days);
+			timeStr += units.hours > 0 ? ' ' + units.hours + ' hour' + pluralize(units.hours) + post : post;
+		} else if (units.hours >= 1) {
+			units.minutes -= (units.hours * 60);
+			timeStr = units.hours + ' hour' + pluralize(units.hours);
+			timeStr += units.minutes > 0 ? ' ' + units.minutes + ' minute' + pluralize(units.minutes) + post : post;
+		} else if (units.minutes >= 1) {
+			timeStr = units.minutes + ' minute' + pluralize(units.minutes) + post;
 		}
 		return timeStr;
 	};

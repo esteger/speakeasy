@@ -9,6 +9,7 @@ angular.module('speakeasy').directive('postForm', function() {
 			this.imgLoading = false;
 
 			this.uploadToImgur = (files) => {
+				console.log(files);
 				if (files.length > 0) {
 					this.imgLoading = true;
 
@@ -60,13 +61,9 @@ angular.module('speakeasy').directive('postForm', function() {
 				} else {
 					this.newPost._id = Random.id();
 
-					Posts.update({_id: parent_id}, {
-						$push: {
-							comments: this.newPost
-						},
-						$set: {
-							bumped: this.newPost.date
-						} 
+					Posts.update({ _id: parent_id }, {
+						$push: { comments: this.newPost },
+						$set: { bumped: this.newPost.date } 
 					});
 				}
 				

@@ -11,21 +11,21 @@
 			
 			<md-button 
 				class="btn-nav" 
-				ng-hide="speakeasy.isLoggedIn || $state.includes('register')" 
+				ng-hide="speakeasy.isLoggedIn || $state.includes('register') || $state.includes('board')" 
 				ng-click="$state.go('register')">
 				Join
 			</md-button>
 			
 			<md-button 
 				class="btn-nav" 
-				ng-hide="speakeasy.isLoggedIn || $state.includes('login')" 
+				ng-hide="speakeasy.isLoggedIn || $state.includes('login') || $state.includes('board')" 
 				ng-click="$state.go('login')">
 				Login
 			</md-button>
 			
 			<md-button 
 				class="btn-nav" 
-				ng-hide="!speakeasy.isLoggedIn" 
+				ng-show="speakeasy.isLoggedIn" 
 				ng-click="speakeasy.logout()">
 				Logout
 			</md-button>

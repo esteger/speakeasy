@@ -1,4 +1,4 @@
-Meteor.publish('parties', function(options, searchString) {
+/*Meteor.publish('parties', function(options, searchString) {
 	if (!searchString || searchString == null) {
 		searchString = '';
 	}
@@ -25,4 +25,4 @@ Meteor.publish('parties', function(options, searchString) {
 
 	Counts.publish(this, 'numberOfParties', Parties.find(selector), {noReady: true});
 	return Parties.find(selector, options);
-});
+});*/

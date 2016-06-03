@@ -12,30 +12,31 @@ angular.module('speakeasy').directive('postControls', function() {
 			this.btnCollapse = this.foldedComments + ' More';
 
 			this.getVotes = (post, value) => {
-				var selector = {post_id: post._id};
+				let selector = { post_id: post._id };
 
 				if (value !== undefined) {
 					selector.value = value;
 				}
 
-				var votes = $filter('filter')(speakeasy.votes, selector);
+				let votes = $filter('filter')(speakeasy.votes, selector);
 
 				return votes.length;
 			};
 
 			this.submitVote = (post, value) => {
-				var vote = {
+				let vote = {
 					post_id: post._id,
+					post_user_id: post.author,
 					user_id: Meteor.userId()
 				};
 
-				var existingVote = $filter('filter')(speakeasy.votes, vote)[0];
+				let existingVote = $filter('filter')(speakeasy.votes, vote)[0];
 
 				if (!existingVote) {
 					vote.value = value;
 					Votes.insert(vote);
 				} else if (existingVote.value !== value) {
-					Votes.update({_id: existingVote._id}, {
+					Votes.update({ _id: existingVote._id }, {
 						$set: { value: value }
 					});
 				} else {
@@ -65,8 +66,6 @@ angular.module('speakeasy').directive('postControls', function() {
 			this.collapseComments = (post) => {
 				var commentLimit = threadCtrl.commentLimit,
 					numComments = !!post.comments ? post.comments.length : 0;
-
-				console.log(commentLimit, numComments);
 
 				if (!this.commentsExpanded) {
 					threadCtrl.foldedComments = 0;

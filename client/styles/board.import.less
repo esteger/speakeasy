@@ -40,6 +40,34 @@ board#speakeasy {
 			}
 		}
 	}
+	.timeout-overlay {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: fade(#000, 90%);
+		z-index: 1000;
+		.center-screen {
+			display: table;
+			height: 100vh;
+			margin: 0 auto;
+			.cell {
+				display: table-cell;
+				vertical-align: middle;
+				.dialogue {
+					padding: 12px;
+					border-radius: 4px;
+					text-align: center;
+					font-size: 18px;
+					a {
+						text-decoration: none;
+						color: @blue;
+					}
+				}
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: @sm) {
