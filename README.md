@@ -6,10 +6,6 @@ Speakeasy is an interactive imageboard built on Meteor and Angular. All data is 
 
 Images are stored and fetched using version 3 of the Imgur API. As such, Speakeasy's database footprint is very small.
 
-## Motivation
-
-Everything else on the internet is stupid.
-
 ## Installation
 
 1. `cd speakeasy`
@@ -17,6 +13,10 @@ Everything else on the internet is stupid.
 3. `meteor --settings settings.json`
 
 To register a user, you will need to first set `var accessCode` in client/scripts/components/register.component.js
+
+## Contributors
+
+Please do not contribute to this project.
 
 ## Tests
 
