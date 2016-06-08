@@ -1,0 +1,16 @@
+<li class="user-item" 
+	ng-class="user.status"
+	ng-click="userlistItem.getStats(user)">
+	<div class="handle">{{user.profile.handle}}</div>
+	<div class="rating">
+		<div class="likes">
+			<div class="amount">{{userlistItem.getVotes(user, 'U')}}</div>
+			<div class="arrow"></div>
+		</div>
+		<div class="dislikes">	
+			<div class="amount">{{userlistItem.getVotes(user, 'D')}}</div>
+			<div class="arrow"></div>
+		</div>
+	</div>
+	<div class="status">{{userlistItem.getStatus(user)}}</div>
+</li>

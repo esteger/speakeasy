@@ -43,4 +43,9 @@ angular.module('speakeasy').service('TimeService', function() {
 		return timeStr;
 	};
 
+	this.secondsAgo = (milliseconds) => {
+		var seconds = getUnits(milliseconds).seconds
+		return seconds + ' second' + pluralize(seconds) + ' ago';
+	};
+
 });

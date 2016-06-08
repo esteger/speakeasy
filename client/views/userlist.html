@@ -1,59 +1,20 @@
 <md-content>
 	<ul layout="column" class="user-list">
-		
-		<li ng-repeat="user in userlist.users | orderBy: 'status.lastLogin.date'"
-			ng-if="user.status.online && !user.status.idle"
-			class="user-item online"
-			ng-click="userlist.getStats(user)">
-			<div class="handle">{{user.profile.handle}}</div>
-			<div class="rating">
-				<div class="likes">
-					<div class="amount">{{userlist.getUpvotes(user)}}</div>
-					<div class="arrow"></div>
-				</div>
-				<div class="dislikes">	
-					<div class="amount">{{userlist.getDownvotes(user)}}</div>
-					<div class="arrow"></div>
-				</div>
-			</div>
-			<div class="status">online for {{userlist.getTime(user.status.lastLogin.date)}}</div>
-		</li>
 
-		<li ng-repeat="user in userlist.users | orderBy: '-status.lastActivity'"
-			ng-if="user.status.online && user.status.idle"
-			class="user-item idle"
-			ng-click="userlist.getStats(user)">
-			<div class="handle">{{user.profile.handle}}</div>
-			<div class="rating">
-				<div class="likes">
-					<div class="amount">{{userlist.getUpvotes(user)}}</div>
-					<div class="arrow"></div>
-				</div>
-				<div class="dislikes">	
-					<div class="amount">{{userlist.getDownvotes(user)}}</div>
-					<div class="arrow"></div>
-				</div>
-			</div>
-			<div class="status">idle for {{userlist.getTime(user.status.lastActivity)}}</div>
-		</li>
+		<userlist-item 
+			ng-repeat="user in userlist.users | orderBy: 'status.lastLogin.date'"
+			ng-if="user.status.online && !user.status.idle">
+		</userlist-item>
 
-		<li ng-repeat="user in userlist.users | orderBy: '-status.logoutTime'"
-			ng-if="!user.status.online && !!user.status.logoutTime"
-			class="user-item offline"
-			ng-click="userlist.getStats(user)">
-			<div class="handle">{{user.profile.handle}}</div>
-			<div class="rating">
-				<div class="likes">
-					<div class="amount">{{userlist.getUpvotes(user)}}</div>
-					<div class="arrow"></div>
-				</div>
-				<div class="dislikes">	
-					<div class="amount">{{userlist.getDownvotes(user)}}</div>
-					<div class="arrow"></div>
-				</div>
-			</div>
-			<div class="status">last seen {{userlist.getTime(user.status.logoutTime)}} ago</div>
-		</li>
+		<userlist-item 
+			ng-repeat="user in userlist.users | orderBy: '-status.lastActivity'"
+			ng-if="user.status.online && user.status.idle">
+		</userlist-item>
+
+		<userlist-item 
+			ng-repeat="user in userlist.users | orderBy: '-status.logoutTime'"
+			ng-if="!user.status.online && !!user.status.logoutTime">
+		</userlist-item>
 
 	</ul>
 </md-content>
