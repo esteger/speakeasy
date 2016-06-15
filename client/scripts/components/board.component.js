@@ -13,7 +13,7 @@ angular.module('speakeasy').directive('board', function() {
 			};
 
 			this.stickies = [
-				// { text: 'You will be logged out after 30 minutes of inactivity' }
+				// { text: 'Click on an item in the user list to set a tag for that user.' }
 			];
 
 			reactiveContext.subscribe('threads', () => [{

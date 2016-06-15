@@ -1,7 +1,23 @@
 <div class="post-container">
 
-	<md-content class="post-header" layout="row" flex>
-		<span class="username">{{post.getAuthor(content)}}</span>
+	<md-content class="post-header" layout="row" layout-xs="column" flex>
+		<span 
+			class="username-container"
+			ng-click="post.showUserTag = !post.showUserTag">
+			<span 
+				class="username" 
+				ng-hide="post.showUserTag && !!post.getAuthor(content).tag">
+				{{post.getAuthor(content).handle}}
+			</span>
+			<span class="usertag" ng-if="!!post.getAuthor(content).tag">
+				<i 
+					class="fa fa-tag" 
+					aria-hidden="true" 
+					ng-class="{'active': post.showUserTag}">
+				</i>
+				<span ng-show="post.showUserTag">{{post.getAuthor(content).tag}}</span>
+			</span>
+		</span>
 		<span flex></span>
 		<span class="date">{{post.getTimeAgo(content)}}</span>
 	</md-content>

@@ -1,7 +1,10 @@
 <li class="user-item" 
-	ng-class="user.status"
-	ng-click="userlistItem.getStats(user)">
-	<div class="handle">{{user.profile.handle}}</div>
+	ng-class="userlistItem.status"
+	ng-click="userlistItem.showDetailView(user, userlist)">
+	<div class="handle">
+		<span>{{user.profile.handle}}</span>
+		<i class="fa fa-tag" aria-hidden="true" ng-if="!!userlistItem.getUserTag(user)"></i>
+	</div>
 	<div class="rating">
 		<div class="likes">
 			<div class="amount">{{userlistItem.getVotes(user, 'U')}}</div>

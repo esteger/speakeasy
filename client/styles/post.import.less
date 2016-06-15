@@ -1,10 +1,22 @@
 .post-container {
 	.post-header {
 		margin-bottom: 12px;
-		.username {
-			color: @blue;
+		.username-container {
 			font-size: 18px;
+			line-height: 28px;
 			font-weight: 550;
+			cursor: pointer;
+			outline: none;
+			color: @blue;
+			.usertag {
+				color: fade(@orange, 75%);
+			}
+			.fa-tag {
+				color: fade(@orange, 25%);
+				&.active {
+					color: fade(@orange, 75%);
+				}
+			}
 			&.error {
 				color: @pink;
 			}
@@ -12,7 +24,6 @@
 		.date {
 			color: darken(@light-grey, 10%);
 			font-size: 14px;
-			white-space: nowrap;
 		}
 	}
 	.youtube-container {

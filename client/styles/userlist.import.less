@@ -7,10 +7,38 @@ userlist {
 			font-size: 12px;
 			border-bottom: 1px solid fade(@white, 100%);
 			color: @grey;
-			// cursor: pointer;
+			cursor: pointer;
 			outline: none;
 			.handle {
 				font-size: 16px;
+			}
+			&.online {
+				.handle {
+					color: darken(@green, 5%);
+					font-weight: bold;
+					.fa-tag {
+						color: fade(@green, 50%);	
+					}
+				}
+			}
+			&.idle {
+				.handle {
+					color: darken(@green, 5%);
+					font-style: italic;
+					font-weight: normal;
+					.fa-tag {
+						color: fade(@green, 50%);	
+					}
+				}
+			}
+			&.offline {
+				.handle {
+					color: @grey;
+					font-style: italic;
+					.fa-tag {
+						color: fade(@grey, 25%);	
+					}
+				}
 			}
 			.status {
 				font-style: italic;
@@ -44,26 +72,18 @@ userlist {
 					}
 				}
 			}
-			&.online {
-				.handle {
-					color: darken(@green, 5%);
-					font-weight: bold;
-				}
-			}
-			&.idle {
-				.handle {
-					color: darken(@green, 5%);
-					font-style: italic;
-				}
-			}
-			&.offline {
-				.handle {
-					color: @grey;
-					font-style: italic;
-				}
-			}
 			&:hover {
 				background-color: fade(@light-blue, 15%);
+			}
+		}
+	}
+	.user-detail {
+		.action-container {
+			.md-button:first-child {
+				margin-left: 0;
+			}
+			.md-button:last-child {
+				margin-right: 0;
 			}
 		}
 	}

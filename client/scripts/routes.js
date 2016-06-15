@@ -4,7 +4,7 @@ angular.module('speakeasy').config(function($urlRouterProvider, $stateProvider, 
 	$stateProvider
 		.state('board', {
 			url: '/',
-			template: '<board id="speakeasy" layout="column" layout-align="start center" flex-offset="0" flex-offset-gt-sm="10" flex="100" flex-gt-sm="80"></board>',
+			template: '<board id="speakeasy" layout="column" layout-align="start center" flex-offset="0" flex-offset-gt-sm="5" flex="100" flex-gt-sm="90"></board>',
 			resolve: {
 				currentUser: ($q) => {
 					if (Meteor.userId() === null) {

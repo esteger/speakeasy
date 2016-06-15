@@ -9,6 +9,7 @@ angular.module('speakeasy').directive('post', function() {
 		controller: function($scope, $filter, $sce, TimeService) {
 			var speakeasy = $scope.$root.speakeasy;
 			
+			this.showUserTag = false;
 			this.imgExpand = false;
 			this.youTube = false;
 			this.imgur = null;
@@ -18,14 +19,16 @@ angular.module('speakeasy').directive('post', function() {
 			};
 
 			this.getAuthor = (post) => {
-				var user = $filter('filter')(speakeasy.users, {_id: post.author})[0],
-					author = '';
+				let user = $filter('filter')(speakeasy.users, { _id: post.author })[0];
+				let tags = speakeasy.currentUser.profile.userTags || [];
 
-				if (user) {
-					author = user.profile.handle;
+				if (!!user) {
+					let tagObj = tags.filter(tag => tag.user_id === user._id)[0];
+					return {
+						handle: user.profile.handle,
+						tag: !!tagObj ? tagObj.userTag : null
+					};
 				}
-				
-				return author;
 			};
 
 			this.getTimeAgo = (post) => {
@@ -37,7 +40,7 @@ angular.module('speakeasy').directive('post', function() {
 			};
 
 			this.getPostImg = (post, store = 'original') => {
-				var img = $filter('filter')(speakeasy.images, {_id: post.img})[0];
+				var img = $filter('filter')(speakeasy.images, { _id: post.img })[0];
 				
 				if (!!img) {
 					return img.url({store: store});

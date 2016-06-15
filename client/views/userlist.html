@@ -1,20 +1,53 @@
 <md-content>
+
 	<ul layout="column" class="user-list">
 
 		<userlist-item 
 			ng-repeat="user in userlist.users | orderBy: 'status.lastLogin.date'"
-			ng-if="user.status.online && !user.status.idle">
+			ng-if="user.status.online && !user.status.idle"
+			ng-hide="userlist.detailView && user._id !== userlist.userDetail._id">
 		</userlist-item>
 
 		<userlist-item 
 			ng-repeat="user in userlist.users | orderBy: '-status.lastActivity'"
-			ng-if="user.status.online && user.status.idle">
+			ng-if="user.status.online && user.status.idle"
+			ng-hide="userlist.detailView && user._id !== userlist.userDetail._id">
 		</userlist-item>
 
 		<userlist-item 
 			ng-repeat="user in userlist.users | orderBy: '-status.logoutTime'"
-			ng-if="!user.status.online && !!user.status.logoutTime">
+			ng-if="!user.status.online && !!user.status.logoutTime"
+			ng-hide="userlist.detailView && user._id !== userlist.userDetail._id">
 		</userlist-item>
 
 	</ul>
+
+	<article class="user-detail" ng-show="userlist.detailView" layout-padding>
+
+		<form layout="column">
+
+			<md-input-container layout="row">
+				<label>User Tag</label>
+				<input type="text" ng-model="userlist.userDetail.userTag" flex/>
+			</md-input-container>
+
+			<md-input-container class="action-container" layout="row">
+				<md-button 
+					ng-click="userlist.cancel()" 
+					class="btn-cancel" 
+					flex="50">
+					Cancel
+				</md-button>
+				
+				<md-button 
+					ng-click="userlist.save()" 
+					class="btn-save" 
+					flex="50">
+					Save
+				</md-button>
+			</md-input-container>
+		</form>
+
+	</article>
+
 </md-content>
