@@ -12,15 +12,15 @@ angular.module('speakeasy').directive('postControls', function() {
 			this.btnCollapse = this.foldedComments + ' More';
 
 			this.getVotes = (post, value) => {
-				let selector = { post_id: post._id };
+				// let selector = { post_id: post._id };
 
-				if (value !== undefined) {
-					selector.value = value;
-				}
+				// if (value !== undefined) {
+				// 	selector.value = value;
+				// }
 
-				let votes = $filter('filter')(speakeasy.votes, selector);
+				// let votes = $filter('filter')(speakeasy.votes, selector);
 
-				return votes.length;
+				// return votes.length;
 			};
 
 			this.submitVote = (post, value) => {
