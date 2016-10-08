@@ -10,11 +10,7 @@
 				{{post.getAuthor(content).handle}}
 			</span>
 			<span class="usertag" ng-if="!!post.getAuthor(content).tag">
-				<i 
-					class="fa fa-tag" 
-					aria-hidden="true" 
-					ng-class="{'active': post.showUserTag}">
-				</i>
+				<i class="fa fa-tag" aria-hidden="true" ng-class="{'active': post.showUserTag}"></i>
 				<span ng-show="post.showUserTag">{{post.getAuthor(content).tag}}</span>
 			</span>
 		</span>
@@ -26,7 +22,7 @@
 	<md-content ng-if="!!content.quote" class="quote-container">
 		<div class="text-content">
 			<md-content class="quote-header" layout="row" flex>
-				<span class="username">{{post.getAuthor(content.quote)}}</span>
+				<span class="username">{{post.getAuthor(content.quote).handle}}</span>
 				<span flex></span>
 			</md-content>
 			<md-content class="quote-content" layout="row" flex="nogrow">

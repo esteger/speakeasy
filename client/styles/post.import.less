@@ -82,27 +82,36 @@
 			}
 			.arrow {
 				width: 0;
-			    height: 0;
-			    border-style: solid;
-			    margin-top: 6px;
-			    cursor: pointer;
-			    outline: none;
+				height: 0;
+				border-style: solid;
+				margin-top: 6px;
+				cursor: pointer;
+				outline: none;
+				// &.disabled {
+				// 	cursor: auto;
+				// }
 			}
 			.likes {
 				.arrow {
 					border-width: 0 10px 17.3px 10px;
-    				border-color: transparent transparent @light-blue transparent;
-    				margin-right: 3px;
-    			}
-    			.amount {
-    				margin-right: 6px;
-    			}
+					border-color: transparent transparent @light-blue transparent;
+					margin-right: 3px;
+					// &.disabled {
+					// 	border-color: transparent transparent @blue transparent;
+					// }
+				}
+				.amount {
+					margin-right: 6px;
+				}
 			}
 			.dislikes {
 				.arrow {
 					border-width: 17.3px 10px 0 10px;
 					border-color: @light-blue transparent transparent transparent;
 					margin-left: 3px;
+					// &.disabled {
+					// 	border-color: @blue transparent transparent transparent;
+					// }
 				}
 				.amount {
 					margin-left: 6px;

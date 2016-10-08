@@ -9,7 +9,6 @@ angular.module('speakeasy').directive('postForm', function() {
 			this.imgLoading = false;
 
 			this.uploadToImgur = (files) => {
-				console.log(files);
 				if (files.length > 0) {
 					this.imgLoading = true;
 
@@ -47,7 +46,7 @@ angular.module('speakeasy').directive('postForm', function() {
 				delete this.quotePreview;
 			};
 
-			this.submitPost = (parent_id) => {
+			this.submitPost = (parentId) => {
 				if (!this.newPost.text && !this.newPost.imgur) {
 					return;
 				}
@@ -55,13 +54,13 @@ angular.module('speakeasy').directive('postForm', function() {
 				this.newPost.author = Meteor.userId();
 				this.newPost.date = new Date;
 
-				if (!parent_id) {
+				if (!parentId) {
 					this.newPost.bumped = this.newPost.date;
 					Posts.insert(this.newPost);
 				} else {
 					this.newPost._id = Random.id();
 
-					Posts.update({ _id: parent_id }, {
+					Posts.update({ _id: parentId }, {
 						$push: { comments: this.newPost },
 						$set: { bumped: this.newPost.date } 
 					});

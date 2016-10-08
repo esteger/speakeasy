@@ -4,11 +4,12 @@ angular.module('speakeasy').directive('post', function() {
 		templateUrl: 'client/views/post.html',
 		controllerAs: 'post',
 		scope: {
-			content: '='
+			content: '=',
+			parent: '='
 		},
 		controller: function($scope, $filter, $sce, TimeService) {
 			var speakeasy = $scope.$root.speakeasy;
-			
+
 			this.showUserTag = false;
 			this.imgExpand = false;
 			this.youTube = false;

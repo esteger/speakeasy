@@ -10,20 +10,37 @@ angular.module('speakeasy').directive('postControls', function() {
 			this.foldedComments = threadCtrl.foldedComments;
 			this.commentsExpanded = false;
 			this.btnCollapse = this.foldedComments + ' More';
+			this.voteProcessing = false;
 
-			this.getVotes = (post, value) => {
-				// let selector = { post_id: post._id };
+			this.getVotes = (post, parent) => {
+				let thread = parent || post;
+				let votes = { ups: 0, downs: 0 };
 
-				// if (value !== undefined) {
-				// 	selector.value = value;
-				// }
+				if (Array.isArray(thread.votes)) {
+					thread.votes.filter(threadVote => threadVote.post_id === post._id).forEach(vote => {
+						switch (vote.value) {
+							case 'U': votes.ups++;
+							break;
+							case 'D': votes.downs++;
+							break;
+							case 'UU': votes.ups += 69;
+							break;
+							case 'DD': votes.downs += 69;
+							break;
+						}
+					});
+				}
 
-				// let votes = $filter('filter')(speakeasy.votes, selector);
-
-				// return votes.length;
+				return votes;
 			};
 
-			this.submitVote = (post, value) => {
+			this.submitVote = ($event, post, value, parentId) => {
+				if (this.voteProcessing) { return; }
+
+				this.voteProcessing = true;
+
+				let threadId = parentId || post._id;
+
 				let vote = {
 					post_id: post._id,
 					post_user_id: post.author,
@@ -32,15 +49,20 @@ angular.module('speakeasy').directive('postControls', function() {
 
 				let existingVote = $filter('filter')(speakeasy.votes, vote)[0];
 
+				vote.value = $event.shiftKey ? (value + value) : value;
+
 				if (!existingVote) {
-					vote.value = value;
-					Votes.insert(vote);
-				} else if (existingVote.value !== value) {
-					Votes.update({ _id: existingVote._id }, {
-						$set: { value: value }
+					Meteor.call('addVote', vote, threadId, (error, result) => {
+						this.voteProcessing = false;
+					});
+				} else if (existingVote.value !== vote.value) {
+					Meteor.call('changeVote', existingVote, vote.value, threadId, (error, result) => {
+						this.voteProcessing = false;
 					});
 				} else {
-					Votes.remove({ _id: existingVote._id });
+					Meteor.call('removeVote', existingVote, threadId, (error, result) => {
+						this.voteProcessing = false;
+					});
 				}
 			};
 

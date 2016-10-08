@@ -4,7 +4,7 @@ angular.module('speakeasy').directive('thread', function() {
 		templateUrl: 'client/views/thread.html',
 		controllerAs: 'threadCtrl',
 		controller: function($scope) {
-			this.commentLimit = 2;
+			this.commentLimit = 2;	
 
 			let comments = $scope.thread.comments || [];
 		
