@@ -30,7 +30,6 @@
 					<img ng-src="{{content.quote.imgur.link}}">
 				</div>
 				<div ng-if="!!content.quote.text" class="text-container" flex="nogrow">
-					<!-- <p>{{::post.getPostText(content.quote)}}</p> -->
 					<p>{{::content.quote.text}}</p>
 				</div>
 			</md-content>
@@ -62,8 +61,34 @@
 			ng-if="!!content.text" 
 			class="text-container" 
 			ng-class="{'expand': post.imgExpand}" 
-			flex="nogrow">
-			<p>{{::post.getPostText(content)}}</p>
+			flex="grow">
+			<p ng-if="!postControls.isEdit">{{post.getPostText(content, postControls.showOriginal)}}</p>
+			<!-- Edit form -->
+			<md-input-container
+				ng-if="postControls.isEdit"
+				md-no-float
+				flex="auto" 
+				layout="column">
+
+				<textarea class="edit-text" ng-model="postControls.editText" aria-label="Edit"></textarea>
+				
+				<md-input-container
+					class="edit-action-container"
+					layout="row"
+					layout-align="end">
+					<md-button
+						class="btn-cancel"
+						ng-click="postControls.cancelEdit()">
+						Cancel
+					</md-button>
+					<md-button
+						class="btn-save"
+						ng-click="postControls.saveEdit(content._id, parent._id)">
+						Save
+					</md-button>
+				</md-input-container>
+
+			</md-input-container>
 		</div>
 
 	</md-content>

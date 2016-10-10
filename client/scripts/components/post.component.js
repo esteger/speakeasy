@@ -41,19 +41,18 @@ angular.module('speakeasy').directive('post', function() {
 			};
 
 			this.getPostImg = (post, store = 'original') => {
-				var img = $filter('filter')(speakeasy.images, { _id: post.img })[0];
+				let img = $filter('filter')(speakeasy.images, { _id: post.img })[0];
 				
 				if (!!img) {
 					return img.url({store: store});
 				}
 			};
 
-			this.getPostText = (post) => {
-				if (!!post.text) {
-					var text = post.text;
+			this.getPostText = (post, showOriginal) => {
+				let text = Array.isArray(post.edits) && !showOriginal ? post.edits[0] : post.text;
 
+				if (!!text) {
 					this.embedYouTube(text);
-
 					return text;
 				}
 			};

@@ -7,11 +7,14 @@ angular.module('speakeasy').directive('postControls', function() {
 			var speakeasy = $scope.$root.speakeasy,
 				threadCtrl = $scope.$parent.threadCtrl;
 
+			this.voteProcessing = false;
+
+			this.isEdit = false;
+
 			this.foldedComments = threadCtrl.foldedComments;
 			this.commentsExpanded = false;
 			this.btnCollapse = this.foldedComments + ' More';
-			this.voteProcessing = false;
-
+			
 			this.getVotes = (post, parent) => {
 				let thread = parent || post;
 				let votes = { ups: 0, downs: 0 };
@@ -30,7 +33,6 @@ angular.module('speakeasy').directive('postControls', function() {
 						}
 					});
 				}
-
 				return votes;
 			};
 
@@ -72,7 +74,7 @@ angular.module('speakeasy').directive('postControls', function() {
 				postForm.newPost.quote = {
 					author: post.author,
 					date: post.date,
-					text: post.text,
+					text: Array.isArray(post.edits) ? post.edits[0] : post.text,
 					imgur: post.imgur
 				};
 
@@ -83,6 +85,46 @@ angular.module('speakeasy').directive('postControls', function() {
 					imgur: post.imgur
 				};
 
+			};
+
+			this.isEditable = (post) => {
+				let timeAgo = speakeasy.currentTime - post.date.getTime();
+				// 5 minutes
+				return post.author === Meteor.userId() && timeAgo < 300000 && !post.edits;
+			};
+
+			this.editPost = (post) => {
+				if (!this.isEditable(post)) { return; }
+
+				this.isEdit = true;
+				this.editText = post.text;
+			};
+
+			this.cancelEdit = () => {
+				this.isEdit = false;
+			};
+
+			this.saveEdit = (postId, parentId) => {
+				let threadId = parentId || postId;
+				let commentId = !!parentId ? postId : null;
+
+				if (!commentId) {
+					Meteor.call('editThreadText', this.editText, threadId, (error, result) => {
+						this.isEdit = false;
+					});
+				} else {
+					Meteor.call('editCommentText', this.editText, threadId, commentId, (error, result) => {
+						this.isEdit = false;
+					});
+				}
+			};
+
+			this.isEdited = (post) => {
+				return Array.isArray(post.edits);
+			};
+
+			this.toggleEdit = (post) => {
+				this.showOriginal = !this.showOriginal;
 			};
 
 			this.collapseComments = (post) => {

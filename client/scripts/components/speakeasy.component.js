@@ -6,7 +6,7 @@ angular.module('speakeasy').directive('speakeasy', function() {
 		controller: function($scope, $reactive, $state, $mdSidenav, $mdMedia) {
 			let reactiveContext = $reactive(this).attach($scope);
 
-			this.version = '3.0';
+			this.version = '3.1';
 
 			this.media = $mdMedia;
 

@@ -8,11 +8,7 @@ let addVote = (vote, threadId) => {
 				Posts.update({ _id: threadId }, {
 					$push: { votes: vote }
 				}, {}, (error, result) => {
-					if (!!error) {
-						reject(error);
-					} else {
-						resolve(result);
-					}
+					if (!!error) { reject(error); } else { resolve(result); }
 				});
 			}
 		});
@@ -29,11 +25,7 @@ let changeVote = (vote, newValue, threadId) => {
 				Posts.update({ _id: threadId, 'votes._id': vote._id }, {
 					$set: { 'votes.$.value': newValue }
 				}, {}, (error, result) => {
-					if (!!error) {
-						reject(error);
-					} else {
-						resolve(result);
-					}
+					if (!!error) { reject(error); } else { resolve(result); }
 				});
 			}
 		});
@@ -48,13 +40,27 @@ let removeVote = (vote, threadId) => {
 				Posts.update({ _id: threadId }, {
 					$pull: { votes: { _id: vote._id }}
 				}, {}, (error, result) => {
-					if (!!error) {
-						reject(error);
-					} else {
-						resolve(result);
-					}
+					if (!!error) { reject(error); } else { resolve(result); }
 				});
 			}
+		});
+	});
+};
+let editThreadText = (text, threadId) => {
+	return new Promise((resolve, reject) => {
+		Posts.update({ _id: threadId }, {
+			$push: { edits: text }
+		}, {}, (error, result) => {
+			if (!!error) { reject(error); } else { resolve(result); }
+		});
+	});
+};
+let editCommentText = (text, threadId, commentId) => {
+	return new Promise((resolve, reject) => {
+		Posts.update({ _id: threadId, 'comments._id': commentId }, {
+			$push: { 'comments.$.edits': text }
+		}, {}, (error, result) => {
+			if (!!error) { reject(error); } else { resolve(result); }
 		});
 	});
 };
@@ -76,6 +82,20 @@ Meteor.methods({
 	},
 	removeVote: function(vote, threadId) {
 		return removeVote(vote, threadId).then(result => {
+			return result;
+		}).catch(error => {
+			throw new Meteor.Error('400', error);
+		});
+	},
+	editThreadText: function(text, threadId) {
+		return editThreadText(text, threadId).then(result => {
+			return result;
+		}).catch(error => {
+			throw new Meteor.Error('400', error);
+		});
+	},
+	editCommentText: function(text, threadId, commentId) {
+		return editCommentText(text, threadId, commentId).then(result => {
 			return result;
 		}).catch(error => {
 			throw new Meteor.Error('400', error);

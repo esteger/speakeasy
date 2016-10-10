@@ -17,6 +17,18 @@
 	</div>
 
 	<md-button ng-click="postControls.quote(content)">Quote</md-button>
+
+	<md-button 
+		ng-if="postControls.isEditable(content)"
+		ng-click="postControls.editPost(content)">
+		Edit
+	</md-button>
+
+	<md-button
+		ng-if="postControls.isEdited(content)"
+		ng-click="postControls.toggleEdit(content)">
+		{{!postControls.showOriginal ? 'Show Original' : 'Hide Original'}}
+	</md-button>
 	
 	<span flex></span>
 	

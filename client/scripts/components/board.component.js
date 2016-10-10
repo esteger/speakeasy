@@ -13,7 +13,7 @@ angular.module('speakeasy').directive('board', function() {
 			};
 
 			this.stickies = [
-				// { text: 'Click on an item in the user list to set a tag for that user.' }
+				// { text: '[EDIT] is available for 5 minutes after original post.' }
 			];
 
 			reactiveContext.subscribe('threads', () => [{
